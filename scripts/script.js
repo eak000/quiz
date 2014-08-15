@@ -3,6 +3,7 @@
 var questions = [question1, question2, question3, question4, question5, question6];
 var correctAnswer;
 var counter = 0;
+// var currentQuestion = questions[n]
 
 //question objects
 var question1 = {
@@ -72,13 +73,14 @@ $(document).ready (function() {
 
 // on clicking begin
   $("#begin").click(function() {
-  	$("#instructions").fadeOut("slow", startGame)
-  	$("#question").text("Question \#" + (counter + 1) + ": " + question1.q);
+  	$("#instructions").fadeOut("slow", startGame);
+  	startGame();
   });
 	
 // starting new game function
  function startGame() {
-  
+  $("#question").text("Question \#" + (counter + 1) + ": " + question1.q);
+  $("#choices ul").append('<li><input type = "radio" label = "question1.a"/></li>');
  }
 // 	show 1st question
 // 	show answer choices
