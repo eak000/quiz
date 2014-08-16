@@ -56,10 +56,17 @@ li {
 
 #choices {
 	text-align: left;
+<<<<<<< HEAD
 	padding-left: 15px;
 }
 
 #checkAnswer {
+=======
+	padding-left: 20%;
+}
+
+#submitAnswer {
+>>>>>>> master
 	text-align: center;
 	padding: 1px;
 	background-color: #754719;
@@ -78,3 +85,9 @@ li {
 .begin-definition {
 	font-size: .7em;
 }
+
+#count {
+	margin-top: 15px;
+}
+
+
