@@ -39,11 +39,33 @@ ul {
 	height: 100%;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
-	padding: 15px;
+	padding: 25px;
+}
+
+li {
+	padding-bottom:  5px;
 }
 
 #instructions {
 	/*display: none;*/
+}
+
+#quiz {
+	display: none;
+}
+
+#choices {
+	text-align: left;
+	padding-left: 15px;
+}
+
+#checkAnswer {
+	text-align: center;
+	padding: 1px;
+	background-color: #754719;
+	color: #fcf8ed;
+	border-radius: 13px;
+	margin-top: 40px;
 }
 
 #begin {

@@ -1,87 +1,89 @@
 
-
-var questions = [question1, question2, question3, question4, question5, question6];
-var correctAnswer;
-var counter = 0;
-// var currentQuestion = questions[n]
-
 //question objects
-var question1 = {
+var questions = [
+{
+	qNum: 1,
 	q: "What would a farmer do with his mangel-wurzel?",
-	a: "Pull it behind his plow horse.",
-	b: "Feed it to his animals.",
-	c: "Wear it in inclement weather.",
-	d: " Eat it with sauerkraut.",
-	correct: "Feed it to his animals.",
+	choices: ["Pull it behind his plow horse.", "Feed it to his animals.", "Wear it in inclement weather.", "Eat it with sauerkraut."],
+	correct: 2,
 	definition: "n. A variety of beet cultivated as food for livestock."
-};
+},
 
-var question2 = {
-	q: "What is a practitioner of labiomancy good at?",
-	a: "Finding water with a divining rod.",
-	b: "Chemistry.",
-	c: "Storm chasing.",
-	d: "Reading lips",
-	correct: "Reading lips.",
+{
+	qNum: 2,
+	q: "What is a practitioner of labiomancy good at?", 
+	choices: ["Finding water with a divining rod.", "Chemistry.", "Storm chasing.", "Reading lips"],
+	correct: 4,
 	definition: "n. Divination or interpretation by means of the motions of the lips; specifically, lip-reading."
-};
+},
 
-var question3 = {
+ {
+ 	qNum: 3,
 	q: "When would you eat a mesonoxian feast?",
-	a: "At sunset on the Vernal equinox.",
-	b: "750 BC.",
-	c: "At midnight.",
-	d: " On your  fiesta de quinceañera",
-	correct: "At midnight.",
+	choices: ["At sunset on the Vernal equinox.", "750 BC.", "At midnight.", " On your  fiesta de quinceañera"],
+	correct: 3,
 	definition: "adj.	Pertaining to the hour of midnight."
-};
+},
 
-var question4 = {
+{
+	qNum: 4,
 	q: "Your grandmother gave you spondulicks…what is it?",
-	a: "Cash.",
-	b: "A contagious disease.",
-	c: "A delicious treat.",
-	d: "Her homemade remedy for what ails you.",
-	correct: "Cash.",
+	choices: ["Cash.", "A contagious disease.", "A delicious treat.", "Her homemade remedy for what ails you."],
+	correct: 1,
 	definition: "n. Money."
-};
+},
 
-var question5 = {
+{
+	qNum: 5,
 	q: "Where would you wear your winklepickers?",
-	a: "On the bridge of your nose.",
-	b: "On your feet.",
-	c: "On your hands.",
-	d: "On your ears.",
-	correct: "On your feet.",
+	choices: ["On the bridge of your nose.", "On your feet.", "On your hands.", "On your ears."],
+	correct: 2,
 	definition: "n. A shoe with a long pointed toe, popular in the 1950s."
-};
+},
 
-var question6 = {
+{
+	qNum: 6,
 	q: "Your friend has the mulligrubs…you should:",
-	a: "Get her to a doctor.",
-	b: "Suggest a shower.",
-	c: "Get out of the way.",
-	d: "Cheer her up.",
-	correct: "Cheer her up.",
+	choices: ["Get her to a doctor.", "Suggest a shower.", "Get out of the way.", "Cheer her up."],
+	correct: 4,
 	definition: "n. Grumpiness, sullenness, a bad mood."
-};
+}
+];
+
+//global variables
+var currentQuestion = 0;
+var correctAnswers = 0;
+var counter = 0;
+var totalQuestions = questions.length;
+var correctText = "Correct!";
+var wrongText = "That's incorrect...show definition?";
 
 // on page load
 $(document).ready (function() {
-// 	show instructions
-
 
 // on clicking begin
   $("#begin").click(function() {
-  	$("#instructions").fadeOut("slow", startGame);
+  	// 	hide instructions
+  	$("#instructions").fadeOut("fast");
+  	$("#quiz").show("slow", startGame);
   	startGame();
   });
 	
 // starting new game function
  function startGame() {
-  $("#question").text("Question \#" + (counter + 1) + ": " + question1.q);
-  $("#choices ul").append('<li><input type = "radio" label = "question1.a"/></li>');
- }
+	  var currentQuestion = 0;
+		var correctAnswers = 0;
+		var counter = 0;
+	  getQuestion();
+ };
+
+ function getQuestion() {
+ 	$("#currentQ").text(questions[currentQuestion].q);
+ 	$("#choice0").text(questions[currentQuestion].choices[0]);
+ 	$("#choice1").text(questions[currentQuestion].choices[1]);
+ 	$("#choice2").text(questions[currentQuestion].choices[2]);
+ 	$("#choice3").text(questions[currentQuestion].choices[3]);
+ };
 // 	show 1st question
 // 	show answer choices
 // 	show question #
