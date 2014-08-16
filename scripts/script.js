@@ -85,29 +85,8 @@ $(document).ready (function() {
  	$("#choice1").text(questions[currentQuestion].choices[1]);
  	$("#choice2").text(questions[currentQuestion].choices[2]);
  	$("#choice3").text(questions[currentQuestion].choices[3]);
- };
-// 	show 1st question
-// 	show answer choices
-// 	show question #
-
-// 	user chooses answer
-// 		if right answer
-// 			hide answer choices
-// 			show "correct"
-// 			show definition
-// 			show next button
-
-// 		if wrong answer
-// 			hide answer choices
-// 			show "wrong"
-// 			option to show definition?
-// 			show next button
-
-// 		keep user from submitting with no choices
-
  	$("#count").text("Question " + counter + " of 6");
- };
-
+ }; //get question end
 
 //check Answer function
 	function checkAnswer() {
