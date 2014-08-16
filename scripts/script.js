@@ -66,7 +66,6 @@ $(document).ready (function() {
   	// 	hide instructions
   	$("#instructions").fadeOut("fast");
   	$("#quiz").show("slow", startGame);
-  	startGame();
   });
 	
 // starting new game function
@@ -77,31 +76,52 @@ $(document).ready (function() {
 	  getQuestion();
  };
 
+ //get question and choices, show question #
  function getQuestion() {
+ 	counter++;
  	$("#currentQ").text(questions[currentQuestion].q);
  	$("#choice0").text(questions[currentQuestion].choices[0]);
  	$("#choice1").text(questions[currentQuestion].choices[1]);
  	$("#choice2").text(questions[currentQuestion].choices[2]);
  	$("#choice3").text(questions[currentQuestion].choices[3]);
+ 	$("#count").text("Question " + counter + " of 6");
  };
-// 	show 1st question
-// 	show answer choices
-// 	show question #
 
-// 	user chooses answer
-// 		if right answer
-// 			hide answer choices
-// 			show "correct"
-// 			show definition
-// 			show next button
 
-// 		if wrong answer
-// 			hide answer choices
-// 			show "wrong"
-// 			option to show definition?
-// 			show next button
+//check Answer function
+	function checkAnswer() {
+		var radioValue = false;
+		var userChoice = document.getElementByName('radios');
+		for (var i = 0; i < userChoice.length; i++) {
+			if(userChoice[i].checked) {
+				radioValue = userChoice[i].value;
+			}
+		}
 
-// 		keep user from submitting with no choices
+		//check that they selected a choice
+		if (radioValue === false) {
+			alert("Please pick an answer");
+		}
+		// if right answer
+		if (radioValue == questions[0].correct) {
+			// show "correct"
+			$("#submitAnswer").text(correctText);
+			// show definition
+			$("#definition").text(questions[0].definition);
+			//show next button
+		}
+		// if wrong answer
+		// hide answer choices
+		// show "wrong"
+		// option to show definition?
+		// 	show next button
+	}; //end checkAnswer function
+
+	// 	click check answer
+	$("#submitAnswer").click(function() {
+			checkAnswer();
+	});
+
 
 // 	next question:
 // 		increase question # count
