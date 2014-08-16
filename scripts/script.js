@@ -1,8 +1,5 @@
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 //question objects
 var questions = [
 {
@@ -70,10 +67,6 @@ $(document).ready (function() {
   	// 	hide instructions
   	$("#instructions").fadeOut("fast");
   	$("#quiz").show("slow", startGame);
-<<<<<<< HEAD
-  	startGame();
-=======
->>>>>>> master
   });
 	
 // starting new game function
@@ -84,19 +77,14 @@ $(document).ready (function() {
 	  getQuestion();
  };
 
-<<<<<<< HEAD
- function getQuestion() {
-=======
  //get question and choices, show question #
  function getQuestion() {
  	counter++;
->>>>>>> master
  	$("#currentQ").text(questions[currentQuestion].q);
  	$("#choice0").text(questions[currentQuestion].choices[0]);
  	$("#choice1").text(questions[currentQuestion].choices[1]);
  	$("#choice2").text(questions[currentQuestion].choices[2]);
  	$("#choice3").text(questions[currentQuestion].choices[3]);
-<<<<<<< HEAD
  };
 // 	show 1st question
 // 	show answer choices
@@ -116,7 +104,7 @@ $(document).ready (function() {
 // 			show next button
 
 // 		keep user from submitting with no choices
-=======
+
  	$("#count").text("Question " + counter + " of 6");
  };
 
@@ -148,6 +136,7 @@ $(document).ready (function() {
 		// show "wrong"
 		// option to show definition?
 		// 	show next button
+		
 	}; //end checkAnswer function
 
 	// 	click check answer
@@ -155,7 +144,6 @@ $(document).ready (function() {
 			checkAnswer();
 	});
 
->>>>>>> master
 
 // 	next question:
 // 		increase question # count
