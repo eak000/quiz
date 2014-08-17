@@ -58,7 +58,7 @@ var currentQuestion = 0;
 var correctAnswers = 0;
 var totalQuestions = questions.length;
 var correctText = "Correct!";
-var wrongText = "That's incorrect...show definition?";
+var wrongText = "That's incorrect";
 
 
 // on clicking begin
@@ -77,7 +77,6 @@ var wrongText = "That's incorrect...show definition?";
 
  //get question and choices, show question #
  function getQuestion() {
- 	currentQuestion++;
  	$("#currentQ").text(questions[currentQuestion].q);
  	$("#choice0").text(questions[currentQuestion].choices[0]);
  	$("#choice1").text(questions[currentQuestion].choices[1]);
@@ -102,12 +101,13 @@ var wrongText = "That's incorrect...show definition?";
 			alert("Please pick an answer");
 		}
 		// if right answer
-		else if (radioValue == questions[0].correct) {
+		else if (radioValue == questions[currentQuestion].correct) {
 			// show "correct"
 			$("#submitAnswer").text(correctText);
 			// show definition
-			$("#definition").text(questions[0].definition);
-			//show next button
+			$("#definition").text(questions[currentQuestion].definition);
+			correctAnswers++;
+
 		} else {
 			// if wrong answer show "wrong"
 			$("#submitAnswer").text(wrongText)
@@ -118,7 +118,9 @@ var wrongText = "That's incorrect...show definition?";
 		};
 		// 	show next button
 		$("#nextQ").show();	
-	
+		$("#nextQ").click(function() {
+			nextQuestion();
+		})
 	}; //end checkAnswer function
 
 	// 	click check answer
@@ -134,10 +136,11 @@ function nextQuestion() {
 	$("#nextQ").hide();
 	//show check answer option
 	$("#submitAnswer").text("Check Answer");
+	currentQuestion++;
 
 	//get question function
 	getQuestion();
-}
+}; //end next Question function
 
 
 // 	after final question
