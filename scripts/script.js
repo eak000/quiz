@@ -71,31 +71,45 @@ var wrongText = "That's incorrect";
 	
 // starting new game function
  function startGame() {
-	  var currentQuestion = 0;
-		var correctAnswers = 0;
+	  // currentQuestion = 1;
+		correctAnswers = 0;
 	  getQuestion();
  };
 
  //get question and choices, show question #
  function getQuestion() {
+ 	currentQuestion++;
  	$("#currentQ").text(questions[currentQuestion].q);
  	$("#choice0").text(questions[currentQuestion].choices[0]);
  	$("#choice1").text(questions[currentQuestion].choices[1]);
  	$("#choice2").text(questions[currentQuestion].choices[2]);
  	$("#choice3").text(questions[currentQuestion].choices[3]);
  	$("#count").text("Question " + currentQuestion + " of 6");
+ 	
  };
+
+ //next question function:
+
+function nextQuestion() {
+	// hide next button
+	$("#nextQ").hide();
+	//show check answer option
+	$("#submitAnswer").text("Check Answer");
+
+	//get question function
+	getQuestion();
+}; //end next Question function
 
 //check Answer function
 	function checkAnswer() {
-		console.log("answer checked");
+		// console.log("answer checked");
 		var radioValue = false;
 		var userChoice = document.getElementsByName('radios');
 		for (var i = 0; i < userChoice.length; i++) {
 			if(userChoice[i].checked) {
 				radioValue = userChoice[i].value;
-			}
-		}
+			};
+		};
 
 		//check that they selected a choice
 		if (radioValue === false) {
@@ -111,18 +125,25 @@ var wrongText = "That's incorrect";
 
 		} else {
 			// if wrong answer show "wrong"
-			$("#submitAnswer").text(wrongText)
-						// option to show definition?
-						// $("#submitAnswer").click(function() {
-						// 	$("#definition").text(questions[0].definition)
-						// });
+			$("#submitAnswer").text(wrongText);
+		
 		};
 		// 	show next button
 
 		$("#nextQ").show();	
-		$("#nextQ").click(function() {
+
+		// after final question
+		if (questions[currentQuestion].qNum === 6) {
+			// show user final score
+			$("#submitAnswer").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
+			// "play again" option
+			$("#playAgain").show();
+		} else {	
+			$("#nextQ").click(function() {
 			nextQuestion();
-		})
+			});
+		};
+	
 	}; //end checkAnswer function
 
 	// 	click check answer
@@ -131,22 +152,5 @@ var wrongText = "That's incorrect";
 	});
 
 
-// 	next question function:
-
-function nextQuestion() {
-	// hide next button
-	$("#nextQ").hide();
-	//show check answer option
-	$("#submitAnswer").text("Check Answer");
-	currentQuestion++;
-
-	//get question function
-	getQuestion();
-}; //end next Question function
-
-
-// 	after final question
-// 		show user final score
-// 		"play again" option
 
 }); // end document ready function
