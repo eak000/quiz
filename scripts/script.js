@@ -1,3 +1,6 @@
+// on page load
+$(document).ready (function() {
+
 
 
 //question objects
@@ -54,13 +57,10 @@ var questions = [
 //global variables
 var currentQuestion = 0;
 var correctAnswers = 0;
-var counter = 0;
 var totalQuestions = questions.length;
 var correctText = "Correct!";
 var wrongText = "That's incorrect...show definition?";
 
-// on page load
-$(document).ready (function() {
 
 // on clicking begin
   $("#begin").click(function() {
@@ -73,25 +73,25 @@ $(document).ready (function() {
  function startGame() {
 	  var currentQuestion = 0;
 		var correctAnswers = 0;
-		var counter = 0;
 	  getQuestion();
  };
 
  //get question and choices, show question #
  function getQuestion() {
- 	counter++;
+ 	currentQuestion++;
  	$("#currentQ").text(questions[currentQuestion].q);
  	$("#choice0").text(questions[currentQuestion].choices[0]);
  	$("#choice1").text(questions[currentQuestion].choices[1]);
  	$("#choice2").text(questions[currentQuestion].choices[2]);
  	$("#choice3").text(questions[currentQuestion].choices[3]);
- 	$("#count").text("Question " + counter + " of 6");
- }; //get question end
+ 	$("#count").text("Question " + currentQuestion + " of 6");
+ };
 
 //check Answer function
 	function checkAnswer() {
+		console.log("answer checked");
 		var radioValue = false;
-		var userChoice = document.getElementByName('radios');
+		var userChoice = document.getElementsByName('radios');
 		for (var i = 0; i < userChoice.length; i++) {
 			if(userChoice[i].checked) {
 				radioValue = userChoice[i].value;
@@ -103,19 +103,24 @@ $(document).ready (function() {
 			alert("Please pick an answer");
 		}
 		// if right answer
-		if (radioValue == questions[0].correct) {
+		else if (radioValue == questions[0].correct) {
 			// show "correct"
 			$("#submitAnswer").text(correctText);
 			// show definition
 			$("#definition").text(questions[0].definition);
 			//show next button
-		}
-		// if wrong answer
-		// hide answer choices
-		// show "wrong"
-		// option to show definition?
+		} else {
+			// if wrong answer show "wrong"
+			$("#submitAnswer").text(wrongText)
+						// option to show definition?
+						// $("#submitAnswer").click(function() {
+						// 	$("#definition").text(questions[0].definition)
+						// });
+		};
 		// 	show next button
-		
+
+		$("#nextQ").show();	
+	
 	}; //end checkAnswer function
 
 	// 	click check answer
@@ -124,9 +129,18 @@ $(document).ready (function() {
 	});
 
 
-// 	next question:
-// 		increase question # count
-// 		repeat above
+// 	next question function:
+
+function nextQuestion() {
+	// hide next button
+	$("#nextQ").hide();
+	//show check answer option
+	$("#submitAnswer").text("Check Answer");
+
+	//get question function
+	getQuestion();
+}
+
 
 // 	after final question
 // 		show user final score
