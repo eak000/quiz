@@ -77,14 +77,14 @@ li {
 	background-color: #b2937b;
 }
 
-#nextQ {
+#nextQ, #playAgain {
 	color: #754719;
 	text-align: center;
 	margin-top: 15px;
 	padding: 10px;
 }
 
-#nextQ:hover {
+#nextQ:hover, #playAgain:hover {
 	color: #b2937b;
 }
 
@@ -110,5 +110,6 @@ li {
 #count {
 	margin-top: 15px;
 }
+
 
 
