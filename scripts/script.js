@@ -72,14 +72,20 @@ var wrongText = "That's incorrect";
 	
 // starting new game function
  function startGame() {
-	  // currentQuestion = 1;
+	  currentQuestion = 1;
 		correctAnswers = 0;
+		questionIndex = 0;
+		$("#question").show();
+		$("#choices").show();
+		$("#submitAnswer").show();
+		$("#playAgain").hide();
 	  getQuestion();
  };
 
  //get question and choices, show question #
  function getQuestion() {
  	// questionIndex++;
+ 	$('radios').prop("checked", false);
  	$("#currentQ").text(questions[questionIndex].q);
  	$("#choice0").text(questions[questionIndex].choices[0]);
  	$("#choice1").text(questions[questionIndex].choices[1]);
@@ -104,10 +110,11 @@ var wrongText = "That's incorrect";
 		if (radioValue === false) {
 			alert("Please pick an answer");
 		}
+
 		// if right answer
 		else if (radioValue == questions[questionIndex].correct) {
 			// show "correct"
-			$("#submitAnswer").text(correctText);
+			$("#submitAnswer").html('<h2>' + correctText + '</h2>');
 			// show definition
 			$("#definition").show()
 			$("#definition").text(questions[questionIndex].definition);
@@ -115,7 +122,7 @@ var wrongText = "That's incorrect";
 
 		} else {
 			// if wrong answer show "wrong"
-			$("#submitAnswer").text(wrongText);
+			$("#submitAnswer").html('<h2>' + wrongText + '</h2>');
 		
 		};
 		// 	show next button
@@ -130,34 +137,44 @@ var wrongText = "That's incorrect";
 
 	// 	click check answer
 	$("#submitAnswer").click(function() {
-
-		
 			checkAnswer();
-
 	});
 
 	 //next question function:
 
 function nextQuestion() {
+
 	// hide next button
 	$("#nextQ").hide();
 	//show check answer option
-	$("#submitAnswer").text("Check Answer");
+	$("#submitAnswer").html('<h2>Check Answer</h2>');
 	$("#definition").hide();
 	currentQuestion++;
 	questionIndex++;
 
 	// after final question
-		if (questionIndex == 6) {
+
+if (questionIndex == 6) {
 			// show user final score
 			$("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
 			// "play again" option
 			$("#playAgain").show();
-			$("#nextQ").hide;
+			$("#question").hide();
+			$("#choices").hide();
+			$("#submitAnswer").hide();
 			} else {
 			//get question function
 			getQuestion();
 		};
 }; //end next Question function
 
+		//play again function
+
+		$("#playAgain").click(function() {
+			startGame();
+		});
+
 }); // end document ready function
+
+
+

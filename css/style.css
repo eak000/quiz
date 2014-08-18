@@ -70,7 +70,7 @@ li {
 
 #submitAnswer {
 	text-align: center;
-	padding: 15px;
+	padding: 10px;
 	background-color: #754719;
 	color: #fcf8ed;
 	border-radius: 13px;
@@ -86,6 +86,10 @@ li {
 	text-align: center;
 	margin-top: 15px;
 	padding: 10px;
+}
+
+#playAgain {
+	display: none;
 }
 
 #nextQ:hover, #playAgain:hover {
