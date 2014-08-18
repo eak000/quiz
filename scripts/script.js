@@ -122,19 +122,6 @@ var wrongText = "That's incorrect";
 
 		$("#nextQ").show();	
 
-		// after final question
-		if (questionIndex == 7) {
-			// show user final score
-			$("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
-			// "play again" option
-			$("#playAgain").show();
-			$("#nextQ").hide;
-			};
-
-		// $("#nextQ").click(function() {
-		// 	nextQuestion();
-		// });
-
 	}; //end checkAnswer function
 
 	$("#nextQ").click(function() {
@@ -143,7 +130,10 @@ var wrongText = "That's incorrect";
 
 	// 	click check answer
 	$("#submitAnswer").click(function() {
+
+		
 			checkAnswer();
+
 	});
 
 	 //next question function:
@@ -156,8 +146,18 @@ function nextQuestion() {
 	$("#definition").hide();
 	currentQuestion++;
 	questionIndex++;
-	//get question function
-	getQuestion();
+
+	// after final question
+		if (questionIndex == 6) {
+			// show user final score
+			$("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
+			// "play again" option
+			$("#playAgain").show();
+			$("#nextQ").hide;
+			} else {
+			//get question function
+			getQuestion();
+		};
 }; //end next Question function
 
 }); // end document ready function
