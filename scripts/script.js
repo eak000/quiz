@@ -85,7 +85,6 @@ var wrongText = "That's incorrect";
  //get question and choices, show question #
  function getQuestion() {
  	// questionIndex++;
- 	$('radios').prop("checked", false);
  	$("#currentQ").text(questions[questionIndex].q);
  	$("#choice0").text(questions[questionIndex].choices[0]);
  	$("#choice1").text(questions[questionIndex].choices[1]);
@@ -126,13 +125,40 @@ var wrongText = "That's incorrect";
 		
 		};
 		// 	show next button
+		if (questions[questionIndex].qNum == 6) {
 
-		$("#nextQ").show();	
+			if (radioValue == questions[questionIndex].correct) {
+			// show "correct"
+			$("#submitAnswer").html('<h2>' + correctText + '</h2>');
+			// show definition
+			$("#definition").show()
+			$("#definition").text(questions[questionIndex].definition);
+			correctAnswers++;
+
+			} else {
+			// if wrong answer show "wrong"
+			$("#submitAnswer").html('<h2>' + wrongText + '</h2>');
+		
+		};
+
+			$("#nextQ").hide();	
+			$("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
+			// "play again" option
+			$("#playAgain").show();
+		
+			// $("#choices").hide();
+			$("#submitAnswer").hide();
+		} else {
+			$("#nextQ").show();
+		}
+
+		
 
 	}; //end checkAnswer function
 
 	$("#nextQ").click(function() {
 			nextQuestion();
+			$('input:radio[name=radios]').attr('checked',false);
 		});
 
 	// 	click check answer
@@ -156,12 +182,12 @@ function nextQuestion() {
 
 if (questionIndex == 6) {
 			// show user final score
-			$("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
-			// "play again" option
-			$("#playAgain").show();
-			$("#question").hide();
-			$("#choices").hide();
-			$("#submitAnswer").hide();
+			// $("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
+			// // "play again" option
+			// $("#playAgain").show();
+			// $("#question").hide();
+			// $("#choices").hide();
+			// $("#submitAnswer").hide();
 			} else {
 			//get question function
 			getQuestion();
