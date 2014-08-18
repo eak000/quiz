@@ -40,7 +40,7 @@ var questions = [
 {
 	qNum: 5,
 	q: "Where would you wear your winklepickers?",
-	choices: ["On the bridge of your nose.", "On your feet.", "On your hands.", "On your ears."],
+	choices: ["On the bridge of your nose.", "On your feet.", "On your hands.", "That's personal!."],
 	correct: 2,
 	definition: "n. A shoe with a long pointed toe, popular in the 1950s."
 },
@@ -55,9 +55,10 @@ var questions = [
 ];
 
 //global variables
-var currentQuestion = 0;
+var currentQuestion = 1;
 var correctAnswers = 0;
 var totalQuestions = questions.length;
+var questionIndex = 0;
 var correctText = "Correct!";
 var wrongText = "That's incorrect";
 
@@ -66,7 +67,7 @@ var wrongText = "That's incorrect";
   $("#begin").click(function() {
   	// 	hide instructions
   	$("#instructions").fadeOut("fast");
-  	$("#quiz").show("slow", startGame);
+  	$("#quiz").show("slow", getQuestion);
   });
 	
 // starting new game function
@@ -78,14 +79,13 @@ var wrongText = "That's incorrect";
 
  //get question and choices, show question #
  function getQuestion() {
- 	currentQuestion++;
- 	$("#currentQ").text(questions[currentQuestion].q);
- 	$("#choice0").text(questions[currentQuestion].choices[0]);
- 	$("#choice1").text(questions[currentQuestion].choices[1]);
- 	$("#choice2").text(questions[currentQuestion].choices[2]);
- 	$("#choice3").text(questions[currentQuestion].choices[3]);
+ 	// questionIndex++;
+ 	$("#currentQ").text(questions[questionIndex].q);
+ 	$("#choice0").text(questions[questionIndex].choices[0]);
+ 	$("#choice1").text(questions[questionIndex].choices[1]);
+ 	$("#choice2").text(questions[questionIndex].choices[2]);
+ 	$("#choice3").text(questions[questionIndex].choices[3]);
  	$("#count").text("Question " + currentQuestion + " of 6");
- 	
  };
 
 
@@ -105,12 +105,12 @@ var wrongText = "That's incorrect";
 			alert("Please pick an answer");
 		}
 		// if right answer
-		else if (radioValue == questions[currentQuestion].correct) {
+		else if (radioValue == questions[questionIndex].correct) {
 			// show "correct"
 			$("#submitAnswer").text(correctText);
 			// show definition
 			$("#definition").show()
-			$("#definition").text(questions[currentQuestion].definition);
+			$("#definition").text(questions[questionIndex].definition);
 			correctAnswers++;
 
 		} else {
@@ -123,18 +123,23 @@ var wrongText = "That's incorrect";
 		$("#nextQ").show();	
 
 		// after final question
-		if (questions[currentQuestion].qNum === 6) {
+		if (questionIndex == 7) {
 			// show user final score
-			$("#submitAnswer").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
+			$("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
 			// "play again" option
 			$("#playAgain").show();
-		} else {	
-			$("#nextQ").click(function() {
-			nextQuestion();
-			});
-		};
-	
+			$("#nextQ").hide;
+			};
+
+		// $("#nextQ").click(function() {
+		// 	nextQuestion();
+		// });
+
 	}; //end checkAnswer function
+
+	$("#nextQ").click(function() {
+			nextQuestion();
+		});
 
 	// 	click check answer
 	$("#submitAnswer").click(function() {
@@ -149,6 +154,8 @@ function nextQuestion() {
 	//show check answer option
 	$("#submitAnswer").text("Check Answer");
 	$("#definition").hide();
+	currentQuestion++;
+	questionIndex++;
 	//get question function
 	getQuestion();
 }; //end next Question function
