@@ -88,17 +88,6 @@ var wrongText = "That's incorrect";
  	
  };
 
- //next question function:
-
-function nextQuestion() {
-	// hide next button
-	$("#nextQ").hide();
-	//show check answer option
-	$("#submitAnswer").text("Check Answer");
-
-	//get question function
-	getQuestion();
-}; //end next Question function
 
 //check Answer function
 	function checkAnswer() {
@@ -120,6 +109,7 @@ function nextQuestion() {
 			// show "correct"
 			$("#submitAnswer").text(correctText);
 			// show definition
+			$("#definition").show()
 			$("#definition").text(questions[currentQuestion].definition);
 			correctAnswers++;
 
@@ -151,6 +141,16 @@ function nextQuestion() {
 			checkAnswer();
 	});
 
+	 //next question function:
 
+function nextQuestion() {
+	// hide next button
+	$("#nextQ").hide();
+	//show check answer option
+	$("#submitAnswer").text("Check Answer");
+	$("#definition").hide();
+	//get question function
+	getQuestion();
+}; //end next Question function
 
 }); // end document ready function
