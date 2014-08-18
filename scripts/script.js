@@ -79,6 +79,7 @@ var wrongText = "That's incorrect";
 		$("#choices").show();
 		$("#submitAnswer").show();
 		$("#playAgain").hide();
+		$('input:radio[name=radios]').attr('checked',false);
 	  getQuestion();
  };
 
@@ -128,29 +129,29 @@ var wrongText = "That's incorrect";
 		if (questions[questionIndex].qNum == 6) {
 
 			if (radioValue == questions[questionIndex].correct) {
-			// show "correct"
-			$("#submitAnswer").html('<h2>' + correctText + '</h2>');
-			// show definition
-			$("#definition").show()
-			$("#definition").text(questions[questionIndex].definition);
-			correctAnswers++;
+				// show "correct"
+				$("#submitAnswer").html('<h2>' + correctText + '</h2>');
+				// show definition
+				$("#definition").show()
+				$("#definition").text(questions[questionIndex].definition);
 
-			} else {
+				} else {
 			// if wrong answer show "wrong"
-			$("#submitAnswer").html('<h2>' + wrongText + '</h2>');
-		
-		};
+				$("#submitAnswer").html('<h2>' + wrongText + '</h2>');
+			
+				}
 
-			$("#nextQ").hide();	
-			$("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
-			// "play again" option
-			$("#playAgain").show();
-		
-			// $("#choices").hide();
-			$("#submitAnswer").hide();
+				$("#nextQ").hide();	
+				$("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
+				// "play again" option
+				$("#playAgain").show();
+			
+				// $("#choices").hide();
+				$("#submitAnswer").hide();
+
 		} else {
-			$("#nextQ").show();
-		}
+				$("#nextQ").show();
+		};
 
 		
 
@@ -177,26 +178,16 @@ function nextQuestion() {
 	$("#definition").hide();
 	currentQuestion++;
 	questionIndex++;
+	getQuestion();
 
-	// after final question
-
-if (questionIndex == 6) {
-			// show user final score
-			// $("#count").text("Congrats! You got " + correctAnswers + " out of 6 correct!");
-			// // "play again" option
-			// $("#playAgain").show();
-			// $("#question").hide();
-			// $("#choices").hide();
-			// $("#submitAnswer").hide();
-			} else {
-			//get question function
-			getQuestion();
-		};
 }; //end next Question function
 
 		//play again function
 
 		$("#playAgain").click(function() {
+			$("#submitAnswer").html('<h2>Check Answer</h2>');
+			$("#nextQ").show();
+			$("#definition").hide();
 			startGame();
 		});
 
