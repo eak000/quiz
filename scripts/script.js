@@ -123,6 +123,9 @@ var wrongText = "That's incorrect";
 		} else {
 			// if wrong answer show "wrong"
 			$("#submitAnswer").html('<h2>' + wrongText + '</h2>');
+			// show definition
+			$("#definition").show()
+			$("#definition").text(questions[questionIndex].definition);
 		
 		};
 		// 	show next button
